@@ -1,6 +1,10 @@
 USE codeup_test_db;
 
-INSERT INTO quotes (id, author_first_name, author_last_name, content)
-VALUES (1, 'Douglas', 'Adams', 'Don''t panic');
+# INSERT INTO quotes (author_first_name, author_last_name, content)
+# VALUES  ('Douglas', 'Adams', 'Don''t panic.'),
+#         ('Keanu', 'Reeves', 'Whoa...'),
+#         ('Steve', 'Maraboli', 'Happiness is not the absence of problems.');
 
-SELECT author_first_name, content FROM quotes;
+# SELECT id, author_first_name, author_last_name, content FROM quotes;
+
+TRUNCATE quotes;
