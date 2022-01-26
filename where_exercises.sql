@@ -12,6 +12,6 @@ SELECT 'Last names starting AND ending with "E"' AS 'INFO';
 SELECT * FROM employees
 WHERE last_name LIKE 'E%' AND last_name LIKE '%E';
 
-SELECT 'Last names containing a "Q"' AS 'INFO';
+SELECT 'Last names containing a "Q" but not "QU"' AS 'INFO';
 SELECT * FROM employees
-WHERE last_name LIKE '%Q%';
+WHERE last_name LIKE '%Q%' AND NOT last_name LIKE '%Qu%';
