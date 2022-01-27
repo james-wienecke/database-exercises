@@ -43,7 +43,10 @@ WHERE (MONTH(birth_date) = 12 AND DAY(birth_date) = 25)
   AND YEAR(hire_date) BETWEEN 1990 AND 1999
 ORDER BY hire_date DESC, birth_date DESC;
 
-SELECT CONCAT(first_name, ' ', last_name, ' has been working here for ', DATEDIFF(CURDATE(), hire_date), ' days!') AS 'info'
+SELECT CONCAT(first_name, ' ', last_name,
+    ' has been working here for ',
+    DATEDIFF(CURDATE(), hire_date), ' days!')
+    AS 'info'
 FROM employees.employees
 WHERE (MONTH(birth_date) = 12 AND DAY(birth_date) = 25)
   AND YEAR(hire_date) BETWEEN 1990 AND 1999;
