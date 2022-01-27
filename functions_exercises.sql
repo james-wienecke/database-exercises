@@ -29,5 +29,21 @@ WHERE last_name LIKE 'E%' AND last_name LIKE '%E';
 SELECT CONCAT(first_name, ' ', last_name) AS 'full_name'  FROM employees.employees
 WHERE last_name LIKE '%Q%' AND last_name NOT LIKE '%Qu%';
 
-SELECT  CONCAT(first_name, ' ', last_name, ' was born on ', birth_date) AS 'full_name' FROM employees.employees
+SELECT * FROM employees.employees
 WHERE MONTH(birth_date) = 12 AND DAY(birth_date) = 25;
+
+SELECT *
+FROM employees.employees
+WHERE (MONTH(birth_date) = 12 AND DAY(birth_date) = 25)
+  AND YEAR(hire_date) BETWEEN 1990 AND 1999;
+
+SELECT *
+FROM employees.employees
+WHERE (MONTH(birth_date) = 12 AND DAY(birth_date) = 25)
+  AND YEAR(hire_date) BETWEEN 1990 AND 1999
+ORDER BY hire_date DESC, birth_date DESC;
+
+SELECT CONCAT(first_name, ' ', last_name, ' has been working here for ', DATEDIFF(CURDATE(), hire_date), ' days!') AS 'info'
+FROM employees.employees
+WHERE (MONTH(birth_date) = 12 AND DAY(birth_date) = 25)
+  AND YEAR(hire_date) BETWEEN 1990 AND 1999;
