@@ -45,3 +45,19 @@ FROM departments AS dep
         JOIN employees emp
             ON deptman.emp_no = emp.emp_no
 WHERE sal.to_date = '9999-01-01' AND deptman.to_date = '9999-01-01';
+
+SELECT CONCAT(emp.first_name, ' ', emp.last_name) AS employee,
+       dep.dept_name AS department,
+       CONCAT(demp.first_name, ' ', demp.last_name) AS manager
+FROM employees AS emp
+    JOIN dept_emp AS de
+        ON emp.emp_no = de.emp_no
+    JOIN departments AS dep
+        ON de.dept_no = dep.dept_no
+    JOIN dept_manager AS dm
+        ON dep.dept_no = dm.dept_no
+    JOIN employees AS demp
+        ON dm.emp_no = demp.emp_no
+WHERE de.to_date = '9999-01-01' AND dm.to_date = '9999-01-01';
+
+SELECT * FROM employees;
