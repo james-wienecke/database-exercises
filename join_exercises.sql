@@ -1,7 +1,7 @@
 USE employees;
 
-SELECT dep.dept_name AS 'Department Name',
-       CONCAT(emp.first_name, ' ', emp.last_name) AS 'Department Manager'
+SELECT dep.dept_name AS department_name,
+       CONCAT(emp.first_name, ' ', emp.last_name) AS manager
 FROM departments AS dep
 JOIN dept_manager AS deptman
 ON dep.dept_no = deptman.dept_no
@@ -9,9 +9,9 @@ JOIN employees AS emp
 ON deptman.emp_no = emp.emp_no
 WHERE deptman.to_date = '9999-01-01';
 
-SELECT dep.dept_name AS 'Department Name',
-    CONCAT(emp.first_name, ' ', emp.last_name) AS 'Department Manager',
-    emp.gender AS 'Gender'
+SELECT dep.dept_name AS department_name,
+    CONCAT(emp.first_name, ' ', emp.last_name) AS manager,
+    emp.gender AS gender
 FROM departments AS dep
          JOIN dept_manager AS deptman
               ON dep.dept_no = deptman.dept_no
@@ -20,7 +20,8 @@ FROM departments AS dep
 WHERE emp.gender = 'F'
     AND deptman.to_date = '9999-01-01';
 
-SELECT ti.title AS title, COUNT(emp.emp_no) AS 'Total'
+
+SELECT ti.title AS title, COUNT(emp.emp_no) AS total
 FROM titles AS ti
     JOIN employees AS emp
         ON ti.emp_no = emp.emp_no
@@ -33,9 +34,9 @@ WHERE d.dept_name = 'Customer Service'
     AND ti.to_date = '9999-01-01'
 GROUP BY ti.title;
 
-SELECT dep.dept_name AS 'Department Name',
-       CONCAT(emp.first_name, ' ', emp.last_name) AS 'Department Manager',
-       sal.salary AS 'Salary'
+SELECT dep.dept_name AS department_name,
+       CONCAT(emp.first_name, ' ', emp.last_name) AS manager,
+       sal.salary AS salary
 FROM departments AS dep
         JOIN dept_manager AS deptman
             ON dep.dept_no = deptman.dept_no
