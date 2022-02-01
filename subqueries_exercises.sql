@@ -43,25 +43,18 @@ WHERE dep.dept_no IN (
         FROM employees AS emp
         WHERE emp.gender = 'F'
         )
+    AND deptman.to_date > CURDATE()
     );
 
-SELECT dep.dept_name AS department_name
-FROM (
-    SELECT *
-    FROM departments AS dpt
-    WHERE dpt.dept_no IN (
-        SELECT deptman.dept_no
-        FROM dept_manager as deptman
-        WHERE deptman.emp_no IN (
-            SELECT emp.emp_no
-            FROM employees AS emp
-            WHERE emp.gender = 'F'
-            )
-        )
-    ) AS dep;
-
-SELECT *
-FROM employees
-WHERE employees.gender = 'F';
-
 # Find the first and last name of the employee with the highest salary.
+SELECT CONCAT(emp.first_name, ' ', emp.last_name) AS full_name
+FROM employees AS emp
+WHERE emp.emp_no IN (
+    SELECT sal.emp_no
+    FROM salaries AS sal
+    WHERE sal.salary = (
+        SELECT MAX(salary)
+        FROM salaries
+        WHERE salaries.to_date > CURDATE()
+        )
+    );
